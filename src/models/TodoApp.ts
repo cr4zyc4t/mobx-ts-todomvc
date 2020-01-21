@@ -9,11 +9,11 @@ export enum Filter {
 
 export default class TodoApp {
 	@observable filter: Filter;
-	@observable todos: Todo[];
+	todos: IObservableArray<Todo>;
 
 	constructor(filter: Filter, todos: Todo[]) {
 		this.filter = filter;
-		this.todos = todos;
+		this.todos = observable(todos);
 	}
 
 	@action
@@ -27,13 +27,13 @@ export default class TodoApp {
 
 	// @action
 	// deleteTodo(id: string) {
-	// 	// (this.todos as IObservableArray).replace(this.todos.filter(todo => todo.id !== id))
+	// 	// this.todos.replace(this.todos.filter(todo => todo.id !== id))
 	// 	this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
 	// }
 
 	@action
 	deleteTodo(todo: Todo) {
-		(this.todos as IObservableArray).remove(todo);
+		this.todos.remove(todo);
 	}
 
 	@action

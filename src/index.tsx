@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import TodoApp, { Filter } from './models/TodoApp';
 import storeContext from './context';
+import { configure } from 'mobx';
+
+configure({
+	enforceActions: "observed"
+})
 
 const store = new TodoApp(Filter.All, []);
 
