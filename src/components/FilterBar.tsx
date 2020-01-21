@@ -13,10 +13,10 @@ export default observer(function FilterBar() {
 				<button
 					key={key}
 					onClick={() => store.changeFilter(key as Filter)}
-					style={{ backgroundColor: currentFilter === key ? "green" : "none" }}
+					className={(currentFilter === key && "active") || ""}
 				>{key}</button>
 			))}
-			<br/>
+			<br />
 			<span>Active/Total: {store.activeTodos.length}/{store.todos.length}</span>
 		</div>
 	)

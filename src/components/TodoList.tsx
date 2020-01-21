@@ -9,7 +9,7 @@ export default observer(function TodoList() {
 	return (
 		<div>
 			{
-				store.todos.map(todo => (
+				store.showTodos.map(todo => (
 					<TodoItem todo={todo} key={todo.id} />
 				))
 			}
