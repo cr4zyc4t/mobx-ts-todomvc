@@ -20,21 +20,21 @@ export default class TodoApp {
 	addTodo(title: string) {
 		const newTodo = new Todo(title);
 		newTodo.once(Todo.EVENT_DESTROY, () => {
-			this.deleteTodo(newTodo.id)
+			this.deleteTodo(newTodo)
 		})
 		this.todos.push(newTodo)
 	}
 
-	@action
-	deleteTodo(id: string) {
-		(this.todos as IObservableArray).replace(this.todos.filter(todo => todo.id !== id))
-		// this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
-	}
-
 	// @action
-	// deleteTodo(todo: Todo) {
-	// 	(this.todos as IObservableArray).remove(todo);
+	// deleteTodo(id: string) {
+	// 	// (this.todos as IObservableArray).replace(this.todos.filter(todo => todo.id !== id))
+	// 	this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
 	// }
+
+	@action
+	deleteTodo(todo: Todo) {
+		(this.todos as IObservableArray).remove(todo);
+	}
 
 	@action
 	changeFilter(filter: Filter) {
